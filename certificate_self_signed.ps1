@@ -12,3 +12,8 @@ Export-Certificate -Cert $cert -FilePath "C:\Users\admin\Documents\$certname.cer
 #this is to export the private key
 $mypwd = ConvertTo-SecureString -String "YOUR_PASSPHRASE" -Force -AsPlainText  ## Replace {YOUR_PASSPHRASE}
 Export-PfxCertificate -Cert $cert -FilePath "C:\Users\admin\Documents\$certname.pfx" -Password $mypwd   ## Specify your preferred location
+
+
+
+#Upload your public cert to App Registration certificate. Afterwards you must be able to authenticate non-intera
+Connect-MgGraph -ClientId $clientId -TenantId $tenantId -CertificateThumbprint "<YOUR_CERT_THUMBPRINT>" -NoWelcome ## Replace {YOUR_CERT_THUMBPRINT}
